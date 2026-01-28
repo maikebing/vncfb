@@ -1,4 +1,4 @@
-name: Docker Image CI
+ï»¿name: Docker Image CI
 
 on:
   push:
@@ -12,15 +12,15 @@ jobs:
 
     permissions:
       contents: read
-      packages: write    # ÍÆËÍ GHCR ĞèÒª
-      id-token: write    # ¿ÉÑ¡£¬ÓÃÓÚ OIDC µÇÂ¼
+      packages: write    # æ¨é€ GHCR éœ€è¦
+      id-token: write    # å¯é€‰ï¼Œç”¨äº OIDC ç™»å½•
 
     steps:
     - uses: actions/checkout@v4
 
-    # ¿ÉÑ¡£ºÎª¾µÏñÉú³ÉÔªÊı¾İ£¨±êÇ©¡¢±êÇ©ÁĞ±íµÈ£©
+    # å¯é€‰ï¼šä¸ºé•œåƒç”Ÿæˆå…ƒæ•°æ®ï¼ˆæ ‡ç­¾ã€æ ‡ç­¾åˆ—è¡¨ç­‰ï¼‰
     - name: Docker metadata
-    - id: meta
+      id: meta
       uses: docker/metadata-action@v5
       with:
         images: ghcr.io/${{ github.repository }}
@@ -28,7 +28,7 @@ jobs:
           type=raw,value=latest
           type=sha
 
-    # µÇÂ¼ GHCR£¨Ê¹ÓÃ GitHub ÄÚÖÃÁîÅÆ£©
+    # ç™»å½• GHCRï¼ˆä½¿ç”¨ GitHub å†…ç½®ä»¤ç‰Œï¼‰
     - name: Log in to GHCR
       uses: docker/login-action@v3
       with:
@@ -36,7 +36,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    # ¹¹½¨²¢ÍÆËÍ
+    # æ„å»ºå¹¶æ¨é€
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
