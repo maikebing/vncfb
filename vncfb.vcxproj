@@ -60,6 +60,8 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="gcc_Debug.h" />
+    <ClInclude Include="gcc_Release.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -67,7 +69,10 @@
   <ItemGroup>
     <ClCompile Include="Dockerfile" />
     <ClCompile Include="vncfb.c" />
+    <None Include=".gitignore" />
+    <None Include="LICENSE" />
     <None Include="Makefile" />
+    <None Include="README.md" />
     <None Include="vncfb-Debug.vgdbsettings" />
     <None Include="vncfb-Release.vgdbsettings" />
   </ItemGroup>

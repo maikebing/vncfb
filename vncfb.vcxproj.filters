@@ -30,6 +30,9 @@
     <ClCompile Include="vncfb.c">
       <Filter>Source files</Filter>
     </ClCompile>
+    <None Include="LICENSE" />
+    <None Include="README.md" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
@@ -38,5 +41,13 @@
     <ClCompile Include="Dockerfile">
       <Filter>Source files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gcc_Debug.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="gcc_Release.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
