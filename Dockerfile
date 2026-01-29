@@ -4,7 +4,7 @@ FROM ubuntu:24.04 AS kernel-src
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       git build-essential bc flex bison libssl-dev libelf-dev ca-certificates \
-      python3 && \
+      python3 cpio && \
     rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/microsoft/WSL2-Linux-Kernel.git /wsl-kernel && \
