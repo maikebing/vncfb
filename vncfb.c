@@ -6,7 +6,6 @@
 #include <linux/uaccess.h>
 #include <linux/string.h>
 #include <linux/mm.h>
-#include <linux/defer.h>
 
 #define DRV_NAME "vncfb"
 #define VNCFB_IOC_MAGIC     0xF5
@@ -82,7 +81,7 @@ static int vncfb_alloc_vram(struct vncfb_par *par, u32 w, u32 h, u32 bpp)
 		return -ENOMEM;
 
 	if (par->vram)
-		vzfree(par->vram);
+		vfree(par->vram);
 
 	par->vram = new;
 	par->vram_size = sz;
@@ -316,7 +315,14 @@ static int __init vncfb_init(void)
 	vncfb_update_fix_var(vncfb_info);
 
 	vncfb_info->fbops = &vncfb_ops;
+	/* fb flags */
+#ifdef FBINFO_FLAG_DEFAULT
 	vncfb_info->flags = FBINFO_FLAG_DEFAULT;
+#elif defined(FBINFO_DEFAULT)
+	vncfb_info->flags = FBINFO_DEFAULT;
+#else
+	vncfb_info->flags = 0;
+#endif
 	vncfb_info->screen_base = par->vram;
 	vncfb_info->screen_size = par->vram_size;
 
@@ -343,7 +349,7 @@ static int __init vncfb_init(void)
 	return 0;
 
 err_vfree:
-	vzfree(par->vram);
+	vfree(par->vram);
 err_alloc:
 	framebuffer_release(vncfb_info);
 	return ret;
@@ -359,7 +365,7 @@ static void __exit vncfb_exit(void)
 
 	fb_deferred_io_cleanup(vncfb_info);
 	unregister_framebuffer(vncfb_info);
-	vzfree(par->vram);
+	vfree(par->vram);
 	framebuffer_release(vncfb_info);
 	pr_info(DRV_NAME ": unloaded\n");
 }
