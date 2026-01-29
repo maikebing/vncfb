@@ -55,3 +55,10 @@ Makefile
 /.visualgdb
 /.vs
 /vncfb/Debug
+/.modules.order.cmd
+/.vncfb.o.cmd
+/modules.order
+/vncfb.c
+/vncfb.o
+/.vncfb.mod.cmd
+/vncfb.mod
